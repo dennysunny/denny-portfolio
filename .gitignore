@@ -19,6 +19,9 @@ Thumbs.db
 .env
 .env.*
 !.env.example
+src/environments/environment.prod.ts
+src/environments/environment.ts
+
 
 # Logs
 *.log
