@@ -1,0 +1,41 @@
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-content">
+    <div class="hero-tag" appFadeUp [delay]="0">
+      <span class="tag-line"></span>
+      {{ portfolio.hero().tagline }}
+    </div>
+
+    <h1 appFadeUp [delay]="100">
+      <span class="name-first">{{ portfolio.hero().name.split(' ')[0] }}</span>
+      <span class="name-last">{{ portfolio.hero().name.split(' ')[1] }}</span>
+    </h1>
+
+    <p class="hero-subtitle" appFadeUp [delay]="200">
+      {{ portfolio.hero().subtitle }}
+    </p>
+
+    <div class="hero-ctas" appFadeUp [delay]="300">
+      <a [href]="'mailto:' + portfolio.hero().email" class="btn-primary">
+        ✉ Get in touch
+      </a>
+      <a href="#experience" class="btn-secondary">View my work ↓</a>
+    </div>
+  </div>
+
+  <div class="hero-stats" appFadeUp [delay]="400">
+    @for (stat of portfolio.stats(); track stat.label) {
+      <div class="stat">
+        <div class="stat-num">{{ stat.num }}</div>
+        <div class="stat-label">{{ stat.label }}</div>
+      </div>
+    }
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    Scroll to explore
+  </div>
+</section>

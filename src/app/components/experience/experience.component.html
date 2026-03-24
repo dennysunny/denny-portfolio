@@ -1,0 +1,34 @@
+<section id="experience" class="section-wrap">
+  <app-section-header num="01" title="Experience" />
+
+  <div class="timeline">
+    @for (exp of portfolio.experiences(); track exp.id; let i = $index; let last = $last) {
+      <div class="timeline-item" appFadeUp [delay]="i * 120">
+
+        <div class="timeline-meta">
+          <div class="timeline-period">{{ exp.period }}</div>
+          <div class="timeline-company">{{ exp.company }}</div>
+        </div>
+
+        <div class="timeline-connector">
+          <div class="dot"></div>
+          @if (!last) {
+            <div class="connector-line"></div>
+          }
+        </div>
+
+        <div class="timeline-content">
+          <div class="timeline-role">
+            {{ exp.role }}<span>{{ exp.roleHighlight }}</span>
+          </div>
+          <ul class="bullets">
+            @for (bullet of exp.bullets; track bullet) {
+              <li>{{ bullet }}</li>
+            }
+          </ul>
+        </div>
+
+      </div>
+    }
+  </div>
+</section>

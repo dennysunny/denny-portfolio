@@ -1,0 +1,68 @@
+<div class="list-section">
+
+  @for (group of items(); track group.id; let i = $index) {
+    <div class="item-card">
+      <div class="item-card-header">
+        <span class="item-card-title">Skill Group {{ i + 1 }}</span>
+        <button class="btn-remove" (click)="removeGroup(i)">✕ Remove</button>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-row">
+          <div class="field">
+            <label>Icon (emoji)</label>
+            <input
+              type="text"
+              [ngModel]="group.icon"
+              (ngModelChange)="updateField(i, 'icon', $event)"
+              placeholder="⚡"
+            />
+          </div>
+          <div class="field">
+            <label>Title</label>
+            <input
+              type="text"
+              [ngModel]="group.title"
+              (ngModelChange)="updateField(i, 'title', $event)"
+              placeholder="Frontend Technologies"
+            />
+          </div>
+        </div>
+
+        <div>
+          <div class="section-label">Tags</div>
+          <div class="bullets-editor">
+            @for (tag of group.tags; track $index; let ti = $index) {
+              <div class="bullet-row">
+                <input
+                  type="text"
+                  [ngModel]="tag"
+                  (ngModelChange)="updateTag(i, ti, $event)"
+                  placeholder="Skill name"
+                />
+                <button class="btn-bullet-remove" (click)="removeTag(i, ti)">✕</button>
+              </div>
+            }
+            <button class="btn-bullet-add" (click)="addTag(i)">+ Add tag</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+  <button class="btn-add" (click)="addGroup()">+ Add skill group</button>
+
+  <div class="form-actions">
+    <button class="btn-save" (click)="save()">✓ Save changes</button>
+    @if (saved()) {
+      <span class="saved-msg">✓ Saved to cloud</span>
+    }
+    @if (saveErr()) {
+      <span class="error-msg">✗ {{ saveErr() }}</span>
+    }
+    @if (portfolio.loading()) {
+      <span class="loading-msg">Saving…</span>
+    }
+  </div>
+
+</div>

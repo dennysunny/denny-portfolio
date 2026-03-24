@@ -1,0 +1,40 @@
+<section id="about" class="section-wrap">
+  <app-section-header num="03" title="About" />
+
+  <div class="about-grid">
+
+    <div class="about-text" appFadeUp [delay]="100">
+      @for (para of portfolio.about().bio; track $index) {
+        <p [innerHTML]="para"></p>
+      }
+
+      <div class="contact-row">
+        <a [href]="'mailto:' + portfolio.hero().email" class="contact-chip">
+          ✉ {{ portfolio.hero().email }}
+        </a>
+        <a [href]="'tel:' + portfolio.hero().phone" class="contact-chip">
+          📞 {{ portfolio.hero().phone }}
+        </a>
+      </div>
+    </div>
+
+    <div class="edu-col" appFadeUp [delay]="200">
+      <div class="edu-label">Education</div>
+      <ul class="edu-list">
+        @for (edu of portfolio.about().education; track edu.id) {
+          <li class="edu-item">
+            <div class="edu-degree">{{ edu.degree }}</div>
+            <div class="edu-school">{{ edu.school }}</div>
+            <div class="edu-year">{{ edu.year }}</div>
+          </li>
+        }
+      </ul>
+
+      <div class="location-block">
+        <div class="edu-label">Location</div>
+        <p class="location-text">📍 {{ portfolio.about().location }}</p>
+      </div>
+    </div>
+
+  </div>
+</section>

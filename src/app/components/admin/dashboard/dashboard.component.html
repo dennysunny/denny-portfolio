@@ -1,0 +1,54 @@
+<div class="dashboard">
+
+  <aside class="sidebar">
+
+
+    <nav class="sidebar-nav">
+      @for (tab of tabs; track tab.id) {
+        <button
+          class="tab-btn"
+          [class.active]="activeTab() === tab.id"
+          (click)="setTab(tab.id)"
+        >
+          <span class="tab-icon">{{ tab.icon }}</span>
+          {{ tab.label }}
+        </button>
+      }
+    </nav>
+
+    <div class="sidebar-footer">
+      <a routerLink="/" class="btn-preview">↗ View portfolio</a>
+      <button class="btn-logout" (click)="logout()">Log out</button>
+    </div>
+  </aside>
+
+  <main class="dashboard-content">
+    <div class="content-header">
+      <h1>
+        {{ activeTabLabel() }}
+      </h1>
+      <p class="content-subtitle">Changes are saved automatically to local storage.</p>
+    </div>
+
+    <div class="panel">
+      @switch (activeTab()) {
+        @case ('info') {
+          <app-edit-basic-info />
+        }
+        @case ('experience') {
+          <app-edit-experience />
+        }
+        @case ('skills') {
+          <app-edit-skills />
+        }
+        @case ('about') {
+          <app-edit-about />
+        }
+        @case ('contact') {
+          <app-edit-contact />
+        }
+      }
+    </div>
+  </main>
+
+</div>

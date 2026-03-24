@@ -1,0 +1,90 @@
+<div class="form-grid">
+
+  <div class="form-row">
+    <div class="field">
+      <label for="hero-name">Full Name</label>
+      <input
+        id="hero-name"
+        type="text"
+        [ngModel]="form().name"
+        (ngModelChange)="update('name', $event)"
+        placeholder="Denny Sunny"
+      />
+    </div>
+
+    <div class="field">
+      <label for="hero-tagline">Tagline</label>
+      <input
+        id="hero-tagline"
+        type="text"
+        [ngModel]="form().tagline"
+        (ngModelChange)="update('tagline', $event)"
+        placeholder="Available for new opportunities"
+      />
+    </div>
+  </div>
+
+  <div class="field">
+    <label for="hero-subtitle">Subtitle / Description</label>
+    <textarea
+      id="hero-subtitle"
+      rows="3"
+      [ngModel]="form().subtitle"
+      (ngModelChange)="update('subtitle', $event)"
+      placeholder="Senior Frontend Engineer specialising in..."
+    ></textarea>
+  </div>
+
+  <div class="form-row">
+    <div class="field">
+      <label for="hero-email">Email</label>
+      <input
+        id="hero-email"
+        type="email"
+        [ngModel]="form().email"
+        (ngModelChange)="update('email', $event)"
+        placeholder="you@example.com"
+      />
+    </div>
+
+    <div class="field">
+      <label for="hero-phone">Phone</label>
+      <input
+        id="hero-phone"
+        type="text"
+        [ngModel]="form().phone"
+        (ngModelChange)="update('phone', $event)"
+        placeholder="+91 9999999999"
+      />
+    </div>
+  </div>
+
+  <div class="toggle-row">
+    <label class="toggle" for="hero-available">
+      <input
+        id="hero-available"
+        type="checkbox"
+        [ngModel]="form().available"
+        (ngModelChange)="update('available', $event)"
+      />
+      <span class="track"></span>
+      <span class="thumb"></span>
+    </label>
+    <label for="hero-available">Show "Available for opportunities" badge</label>
+  </div>
+
+  <div class="form-actions">
+    <button class="btn-save" (click)="save()">✓ Save changes</button>
+    <button class="btn-reset" (click)="reset()">Reset</button>
+    @if (saved()) {
+      <span class="saved-msg">✓ Saved to cloud</span>
+    }
+    @if (saveErr()) {
+      <span class="error-msg">✗ {{ saveErr() }}</span>
+    }
+    @if (portfolio.loading()) {
+      <span class="loading-msg">Saving…</span>
+    }
+  </div>
+
+</div>

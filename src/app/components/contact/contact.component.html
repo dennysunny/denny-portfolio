@@ -1,0 +1,19 @@
+<section id="contact" class="contact-wrap">
+  <div class="inner" appFadeUp>
+    <div class="section-tag">04</div>
+    <h2>Let's work together</h2>
+    <p class="desc">
+      I'm open to senior frontend roles, contract work, and interesting
+      technical conversations. Feel free to reach out.
+    </p>
+
+    <div class="links">
+      @for (link of portfolio.contactLinks(); track link.id) {
+        <a [href]="link.href" class="link" target="_blank" rel="noopener">
+          <span class="link-icon">{{ link.icon }}</span>
+          {{ link.label }}
+        </a>
+      }
+    </div>
+  </div>
+</section>

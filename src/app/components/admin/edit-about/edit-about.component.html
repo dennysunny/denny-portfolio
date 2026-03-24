@@ -1,0 +1,91 @@
+<div class="form-grid">
+
+  <div class="field">
+    <label>Location</label>
+    <input
+      type="text"
+      [ngModel]="form().location"
+      (ngModelChange)="updateLocation($event)"
+      placeholder="City, State, Country"
+    />
+  </div>
+
+  <div>
+    <div class="section-label">Bio paragraphs</div>
+    <div class="bullets-editor">
+      @for (para of form().bio; track $index; let i = $index) {
+        <div class="bullet-row bio-row">
+          <textarea
+            rows="2"
+            [ngModel]="para"
+            (ngModelChange)="updateBio(i, $event)"
+            placeholder="Bio paragraph (HTML allowed for &lt;strong&gt; tags)..."
+          ></textarea>
+          <button class="btn-bullet-remove" (click)="removeBio(i)">✕</button>
+        </div>
+      }
+      <button class="btn-bullet-add" (click)="addBio()">+ Add paragraph</button>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="section-label" style="margin-bottom:1rem">Education</div>
+
+  <div class="list-section">
+    @for (edu of form().education; track edu.id; let i = $index) {
+      <div class="item-card">
+        <div class="item-card-header">
+          <span class="item-card-title">Education {{ i + 1 }}</span>
+          <button class="btn-remove" (click)="removeEducation(i)">✕ Remove</button>
+        </div>
+
+        <div class="form-grid">
+          <div class="field">
+            <label>Degree</label>
+            <input
+              type="text"
+              [ngModel]="edu.degree"
+              (ngModelChange)="updateEduField(i, 'degree', $event)"
+              placeholder="Master of Computer Applications"
+            />
+          </div>
+          <div class="field">
+            <label>School</label>
+            <input
+              type="text"
+              [ngModel]="edu.school"
+              (ngModelChange)="updateEduField(i, 'school', $event)"
+              placeholder="University / College name"
+            />
+          </div>
+          <div class="field">
+            <label>Year</label>
+            <input
+              type="text"
+              [ngModel]="edu.year"
+              (ngModelChange)="updateEduField(i, 'year', $event)"
+              placeholder="2017 — 2020"
+            />
+          </div>
+        </div>
+      </div>
+    }
+
+    <button class="btn-add" (click)="addEducation()">+ Add education</button>
+  </div>
+
+  <div class="form-actions">
+    <button class="btn-save" (click)="save()">✓ Save changes</button>
+    @if (saved()) {
+      <span class="saved-msg">✓ Saved to cloud</span>
+    }
+    @if (saveErr()) {
+      <span class="error-msg">✗ {{ saveErr() }}</span>
+    }
+    @if (portfolio.loading()) {
+      <span class="loading-msg">Saving…</span>
+    }
+  </div>
+
+</div>

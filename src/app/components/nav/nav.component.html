@@ -1,0 +1,55 @@
+<nav [class.scrolled]="scrolled()">
+  <a href="/" class="nav-logo">DS.</a>
+
+  <ul class="nav-links">
+    @for (link of navLinks; track link.href) {
+    <li>
+      <a [href]="link.href" [class.active]="portfolio.activeSection() === link.id">
+        {{ link.label }}
+      </a>
+    </li>
+    }
+  </ul>
+
+  <div class="nav-actions">
+    <!-- Theme toggle -->
+    <button class="btn-theme" (click)="theme.toggle()" [attr.aria-label]="theme.label()" [title]="theme.label()">
+      <span class="theme-icon">{{ theme.icon() }}</span>
+    </button>
+
+    @if (auth.canManage()) {
+    <button class="btn-admin" (click)="goAdmin()">⚙️ Manage</button>
+    }
+
+    @if (auth.isLoggedIn()) {
+    <button class="btn-logout" (click)="logout()">Log out</button>
+    }
+  </div>
+
+  <!-- Mobile: theme + hamburger -->
+  <div class="mobile-controls">
+    <button class="btn-theme" (click)="theme.toggle()" [attr.aria-label]="theme.label()">
+      <span class="theme-icon">{{ theme.icon() }}</span>
+    </button>
+
+    <button class="hamburger" (click)="toggleMenu()" [attr.aria-expanded]="menuOpen()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  @if (menuOpen()) {
+  <div class="mobile-menu" (click)="closeMenu()">
+    @for (link of navLinks; track link.href) {
+    <a [href]="link.href">{{ link.label }}</a>
+    }
+    @if (auth.canManage()) {
+    <a routerLink="/admin">⚙ Manage</a>
+    }
+    @if (auth.isLoggedIn()) {
+    <button (click)="logout()">Log out</button>
+    }
+  </div>
+  }
+</nav>

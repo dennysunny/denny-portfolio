@@ -1,0 +1,60 @@
+<div class="list-section">
+
+  @for (link of items(); track link.id; let i = $index) {
+    <div class="item-card">
+      <div class="item-card-header">
+        <span class="item-card-title">Link {{ i + 1 }}</span>
+        <button class="btn-remove" (click)="removeLink(i)">✕ Remove</button>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-row">
+          <div class="field">
+            <label>Icon (emoji or text)</label>
+            <input
+              type="text"
+              [ngModel]="link.icon"
+              (ngModelChange)="updateField(i, 'icon', $event)"
+              placeholder="✉ or 'in'"
+            />
+          </div>
+          <div class="field">
+            <label>Label</label>
+            <input
+              type="text"
+              [ngModel]="link.label"
+              (ngModelChange)="updateField(i, 'label', $event)"
+              placeholder="Email / LinkedIn / GitHub"
+            />
+          </div>
+        </div>
+
+        <div class="field">
+          <label>URL / href</label>
+          <input
+            type="text"
+            [ngModel]="link.href"
+            (ngModelChange)="updateField(i, 'href', $event)"
+            placeholder="mailto:you@example.com or https://..."
+          />
+        </div>
+      </div>
+    </div>
+  }
+
+  <button class="btn-add" (click)="addLink()">+ Add contact link</button>
+
+  <div class="form-actions">
+    <button class="btn-save" (click)="save()">✓ Save changes</button>
+    @if (saved()) {
+      <span class="saved-msg">✓ Saved to cloud</span>
+    }
+    @if (saveErr()) {
+      <span class="error-msg">✗ {{ saveErr() }}</span>
+    }
+    @if (portfolio.loading()) {
+      <span class="loading-msg">Saving…</span>
+    }
+  </div>
+
+</div>

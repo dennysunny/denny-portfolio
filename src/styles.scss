@@ -1,0 +1,120 @@
+/* ── Google Fonts ── */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ── Dark theme (default) ── */
+:root,
+[data-theme='dark'] {
+  --bg:         #0c0c0e;
+  --surface:    #141416;
+  --card:       #1a1a1e;
+  --border:     #2a2a30;
+  --gold:       #c9a84c;
+  --gold-light: #e8c97a;
+  --gold-dim:   rgba(201, 168, 76, 0.1);
+  --text:       #f0ede6;
+  --muted:      #7a7870;
+  --accent:     #4c8dc9;
+  --shadow:     rgba(0, 0, 0, 0.4);
+  --nav-bg:     rgba(12, 12, 14, 0.92);
+  --grain-opacity: 0.45;
+}
+
+/* ── Light theme ── */
+[data-theme='light'] {
+  --bg:         #f5f2ec;
+  --surface:    #ede9e0;
+  --card:       #e8e3d8;
+  --border:     #d4cfc4;
+  --gold:       #a8821e;
+  --gold-light: #c9a84c;
+  --gold-dim:   rgba(168, 130, 30, 0.1);
+  --text:       #1a1814;
+  --muted:      #6b6560;
+  --accent:     #2a6099;
+  --shadow:     rgba(0, 0, 0, 0.1);
+  --nav-bg:     rgba(245, 242, 236, 0.92);
+  --grain-opacity: 0.25;
+}
+
+/* ── Reset ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Smooth theme transition on every element */
+*,
+*::before,
+*::after {
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* But don't slow down deliberate animations */
+.cursor-glow,
+.scroll-line::after,
+nav,
+.btn-primary,
+.btn-secondary,
+.skill-card,
+.edu-item,
+.contact-chip,
+.link,
+.tab-btn,
+.nav-links a::after {
+  transition-duration: unset;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── Grain overlay ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: var(--grain-opacity);
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar        { width: 5px; }
+::-webkit-scrollbar-track  { background: var(--bg); }
+::-webkit-scrollbar-thumb  { background: var(--border); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+/* ── Selection ── */
+::selection {
+  background: rgba(201, 168, 76, 0.25);
+  color: var(--text);
+}
+
+/* ── Links ── */
+a { color: inherit; }
+
+/* ── Section dividers ── */
+main section {
+  border-top: 1px solid var(--border);
+}
+
+main section:first-child {
+  border-top: none;
+}

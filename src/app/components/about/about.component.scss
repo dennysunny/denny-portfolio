@@ -1,0 +1,124 @@
+.section-wrap {
+  padding: 6rem 4rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+// ── Bio text ──────────────────────────────────────────────────────────────
+.about-text {
+  p {
+    color: var(--muted);
+    margin-bottom: 1.2rem;
+    font-size: 0.93rem;
+    line-height: 1.9;
+
+    ::ng-deep strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+  }
+}
+
+.contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.contact-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  padding: 0.5rem 1rem;
+  border-radius: 1px;
+  transition: all 0.25s;
+
+  &:hover {
+    color: var(--gold);
+    border-color: var(--gold);
+    background: rgba(201, 168, 76, 0.06);
+  }
+}
+
+// ── Education column ──────────────────────────────────────────────────────
+.edu-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+}
+
+.edu-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.edu-item {
+  border-left: 2px solid var(--border);
+  padding-left: 1.25rem;
+  transition: border-color 0.25s;
+
+  &:hover {
+    border-color: var(--gold);
+  }
+}
+
+.edu-degree {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+}
+
+.edu-school {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.edu-year {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  margin-top: 0.3rem;
+}
+
+.location-block {
+  margin-top: 2.5rem;
+}
+
+.location-text {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+// ── Responsive ────────────────────────────────────────────────────────────
+@media (max-width: 900px) {
+  .section-wrap {
+    padding: 4rem 1.5rem;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}

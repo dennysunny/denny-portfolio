@@ -1,0 +1,89 @@
+<div class="list-section">
+
+  @for (exp of items(); track exp.id; let i = $index) {
+    <div class="item-card">
+      <div class="item-card-header">
+        <span class="item-card-title">Experience {{ i + 1 }}</span>
+        <button class="btn-remove" (click)="removeExperience(i)">✕ Remove</button>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-row">
+          <div class="field">
+            <label>Period</label>
+            <input
+              type="text"
+              [ngModel]="exp.period"
+              (ngModelChange)="updateField(i, 'period', $event)"
+              placeholder="Jan 2023 — Present"
+            />
+          </div>
+          <div class="field">
+            <label>Company</label>
+            <input
+              type="text"
+              [ngModel]="exp.company"
+              (ngModelChange)="updateField(i, 'company', $event)"
+              placeholder="Company name"
+            />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label>Role prefix</label>
+            <input
+              type="text"
+              [ngModel]="exp.role"
+              (ngModelChange)="updateField(i, 'role', $event)"
+              placeholder="Senior Engineer — "
+            />
+          </div>
+          <div class="field">
+            <label>Role highlight</label>
+            <input
+              type="text"
+              [ngModel]="exp.roleHighlight"
+              (ngModelChange)="updateField(i, 'roleHighlight', $event)"
+              placeholder="Frontend (Angular)"
+            />
+          </div>
+        </div>
+
+        <div>
+          <div class="section-label">Bullet points</div>
+          <div class="bullets-editor">
+            @for (bullet of exp.bullets; track $index; let bi = $index) {
+              <div class="bullet-row">
+                <input
+                  type="text"
+                  [ngModel]="bullet"
+                  (ngModelChange)="updateBullet(i, bi, $event)"
+                  placeholder="Achievement or responsibility..."
+                />
+                <button class="btn-bullet-remove" (click)="removeBullet(i, bi)">✕</button>
+              </div>
+            }
+            <button class="btn-bullet-add" (click)="addBullet(i)">+ Add bullet</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+  <button class="btn-add" (click)="addExperience()">+ Add experience</button>
+
+  <div class="form-actions">
+    <button class="btn-save" (click)="save()">✓ Save changes</button>
+    @if (saved()) {
+      <span class="saved-msg">✓ Saved to cloud</span>
+    }
+    @if (saveErr()) {
+      <span class="error-msg">✗ {{ saveErr() }}</span>
+    }
+    @if (portfolio.loading()) {
+      <span class="loading-msg">Saving…</span>
+    }
+  </div>
+
+</div>

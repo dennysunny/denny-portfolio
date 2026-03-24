@@ -1,0 +1,53 @@
+<div class="login-page">
+  <div class="login-card">
+    <a routerLink="/" class="back-link">← Back to portfolio</a>
+
+    <div class="login-header">
+      <div class="logo">DS.</div>
+      <h1>Welcome back</h1>
+      <p>Sign in to manage your portfolio content</p>
+    </div>
+
+    <form class="login-form" (ngSubmit)="onSubmit()">
+      <div class="field">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          placeholder="your@email.com"
+          [ngModel]="email()"
+          (ngModelChange)="email.set($event)"
+          name="email"
+          autocomplete="email"
+          required
+        />
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          placeholder="••••••••"
+          [ngModel]="password()"
+          (ngModelChange)="password.set($event)"
+          name="password"
+          autocomplete="current-password"
+          required
+        />
+      </div>
+
+      @if (error()) {
+        <div class="error-msg" role="alert">{{ error() }}</div>
+      }
+
+      <button type="submit" class="btn-submit" [disabled]="loading()">
+        @if (loading()) {
+          <span class="spinner"></span> Signing in…
+        } @else {
+          Sign in →
+        }
+      </button>
+    </form>
+  </div>
+</div>

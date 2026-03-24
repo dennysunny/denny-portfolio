@@ -1,0 +1,22 @@
+<section id="skills" class="section-wrap">
+  <app-section-header num="02" title="Skills" />
+
+  <div class="skills-grid" appFadeUp [delay]="100">
+    @for (group of portfolio.skillGroups(); track group.id) {
+      <div
+        class="skill-card"
+        [class.active]="hovered() === group.id"
+        (mouseenter)="hovered.set(group.id)"
+        (mouseleave)="hovered.set(null)"
+      >
+        <div class="card-icon">{{ group.icon }}</div>
+        <div class="card-title">{{ group.title }}</div>
+        <div class="tag-list">
+          @for (tag of group.tags; track tag) {
+            <span class="tag">{{ tag }}</span>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</section>
