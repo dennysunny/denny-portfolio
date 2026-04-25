@@ -1,6 +1,6 @@
 # Denny Sunny — Angular 18 Portfolio
 
-Production-grade Angular 18 portfolio with CMS admin panel and role-based access control.
+A production-grade personal portfolio built with Angular 18 — featuring a fully integrated CMS admin panel, role-based access control, Supabase cloud storage, dark/light theme switching, and comprehensive Jest test coverage. Every content section (hero, experience, skills, about, contact) is editable at runtime without touching code.
 
 ---
 
